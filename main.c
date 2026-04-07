@@ -62,14 +62,68 @@ void cadastrar_pokemon (TPokemon pokemons[], int posicao) {
         pokemons[posicao] = pokemon;
     }
 }
-//=============================================================================================
+//============================FUNÇÃO DE LISTAGEM=========================================
 void listar_pokemon (TPokemon pokemons[], int tamanho) {
     for (int i = 0; i < tamanho; i++) {
         printf("%s\n",pokemons[i].nome_pokemon);
     }
 }
 
-//=============================================================================================
+//============================FUNÇÃO DE BUSCA POR NOME========================================
+void buscar_pokemon (TPokemon pokemons[], int tamanho) {
+    char nome_busca [50];
+    int encontrado = 0;
+
+    printf("digite o nome do pokemon\n");
+    scanf("%s", nome_busca);
+
+    for (int i = 0; i < tamanho; i++) {
+        if (strcmp(pokemons[i].nome_pokemon, nome_busca) == 0) {
+           printf("=====POKEMON ENCONTRADO!=====\n");
+           printf("%s\n",pokemons[i].nome_pokemon);
+           printf("%s\n",pokemons[i].tipo_pokemon);
+           printf("%s\n",pokemons[i].nivel);
+            printf("%s\n",pokemons[i].hp);
+            printf("%s\n",pokemons[i].combatpoints);
+
+            encontrado ==1;
+
+        }
+    }
+
+        if (encontrado == 0) {
+            printf("=====POKEMON NÃO ENCONTRADO!=====\n");
+        }
+}
+
+//===========================FUNÇÃO DE ATUALIZAÇÃO DA POKEDEX===================================
+void atualizar_pokedex (TPokemon pokemons[], int tamanho) {
+    char nome [50];
+
+    printf("=====DIGITE O NOME DO POKEMON PARA ATUALIZAR=====\n");
+    scanf("%s", nome);
+          for (int i = 0; i < tamanho; i++) {
+              if (strcmp(nome, pokemons[i].nome_pokemon) == 0) {
+                  printf("=====INSIRA O NOVO TIPO DO POKEMON=====\n");
+                  scanf("%d", &pokemons[i].tipo_pokemon);
+
+                  printf("=====INSIRA O NOVO NIVEL DO POKEMON=====\n");
+                  scanf("%d", &pokemons[i].nivel);
+
+                  printf("=====INSIRA O NOVO HP DO POKEMON=====\n");
+                  scanf("%d", &pokemons[i].hp);
+
+                  printf("=====INSIRA O NOVO COMBAT POINTS DO POKEMON=====\n");
+                  scanf("%d", &pokemons[i].combatpoints);
+
+                  printf("=====POKEMON ATUALIZADO!=====\n");
+                  return;
+              }
+
+          }
+               printf("=====POKEMON NAO ENCONTRADO=====\n");
+}
+//=========================================================================================
 int main() {
        TPokemon pokemons[10];
     struct pokemon * pokedex;
@@ -96,6 +150,14 @@ int main() {
                 listar_pokemon(pokemons, contador);
                 default:
                 break;
+            case 3: //buscar pokemon por nome
+                buscar_pokemon(pokemons, contador);
+                break;
+            case 4://atualizar pokedex
+                atualizar_pokedex(pokemons, contador);
+                break;
+            case 5://remover pokemon da pokedex
+
             }
 
         }
