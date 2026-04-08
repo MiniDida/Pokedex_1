@@ -123,6 +123,47 @@ void atualizar_pokedex (TPokemon pokemons[], int tamanho) {
           }
                printf("=====POKEMON NAO ENCONTRADO=====\n");
 }
+
+//=================================FUNÇAO DE REMOÇÃO DE POKEMON======================================
+void remover_pokemon (TPokemon pokemons[], int tamanho) {
+    char nome [50];
+
+    printf("=====INSIRA O NOME DO POKEMON QUE DESEJA REMOVER=====\n");
+    scanf("%s", nome);
+            for (int i = 0; i < tamanho; i++) {
+                if ( pokemons[i].status == 1 && strcmp(pokemons[i].nome_pokemon, nome) == 0) {
+                    pokemons[i].status = 0;
+                    printf("=====POKEMON REMOVIDO!=====");
+                    return;
+                }
+            }
+                printf("=====POKEMON NAO ENCONTRADO=====\n");
+}
+
+//==========================================FUNÇÃO DE FILTRAGEM POR TIPO=================================
+void filtro_tipo (TPokemon pokemons[], int tamanho) {
+    char tipo [50];
+    int pokemon_filtrado = 0;
+
+    printf ("=====INSIRA O TIPO DO POKEMON QUE PROCURA=====");
+    scanf("%s", tipo);
+
+        for (int i = 0; i < tamanho; i++) {
+          if (pokemons[].status == 1 && strcmp(pokemons[i].tipo_pokemon, tipo) == 0) {
+              printf("%s \n", pokemons[i].nome_pokemon);
+              printf("%s \n", pokemons[i].tipo_pokemon);
+              printf("%d \n", pokemons[i].nivel);
+              printf("%d \n", pokemons[i].hp);
+              printf("%d \n", pokemons[i].combatpoints);
+              pokemon_filtrado = 1;
+          }
+    }
+
+    if (!pokemon_filtrado) {
+        printf("=====NENHUM POKEMON ENCONTRADO!=====");
+    }
+}
+
 //=========================================================================================
 int main() {
        TPokemon pokemons[10];
@@ -153,11 +194,15 @@ int main() {
             case 3: //buscar pokemon por nome
                 buscar_pokemon(pokemons, contador);
                 break;
-            case 4://atualizar pokedex
+            case 4://atualizar pokedex/pokemon
                 atualizar_pokedex(pokemons, contador);
                 break;
             case 5://remover pokemon da pokedex
-
+                remover_pokemon(pokemons, contador);
+                break;
+            case 6://filtrar pokemons cadastrados
+                filtro_tipo(pokemons, contador);
+                break;
             }
 
         }
